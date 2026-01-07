@@ -23,7 +23,7 @@ chmod +x install.sh
 ### 3. And install.
 
 ```bash
-./install.sh
+sudo ./install.sh
 ```
 
 ### Bonus: FastInstall
@@ -31,5 +31,5 @@ chmod +x install.sh
 ```bash
 wget https://raw.githubusercontent.com/Jov-glitch/sysadmin-configs/main/install.sh
 chmod +x install.sh
-./install.sh
+sudo ./install.sh
 ```
