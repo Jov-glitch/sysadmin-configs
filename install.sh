@@ -63,7 +63,7 @@ if [ "$INSTALL_DOCKER" = true ]; then
     dnf remove -y docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-selinux docker-engine-selinux docker-engine
     
     dnf -y install dnf-plugins-core
-    dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+    curl -fsSL https://download.docker.com/linux/fedora/docker-ce.repo -o /etc/yum.repos.d/docker-ce.repo
     
     dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin || error "Faild to install Docker"
     systemctl enable --now docker
