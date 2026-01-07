@@ -26,3 +26,12 @@ chmod +x install.sh
 ```bash
 ./install.sh
 ```
+
+### Bonus: FastInstall
+
+```bash
+git clone git@github.com-jov:Jov-glitch/sysadmin-configs.git
+cd sysadmin-configs
+chmod +x install.sh
+./install.sh
+```
