@@ -116,7 +116,7 @@ log "Cleaning cache and packages..."
 dnf clean all
 
 echo -e "${GREEN}==============================================${NC}"
-echo -e "${GREEN}   DESPLIEGUE FINALIZADO EXITOSAMENTE 🚀       ${NC}"
+echo -e "${GREEN}   		     Finish       	       ${NC}"
 echo -e "${GREEN}==============================================${NC}"
 echo "Rebooting in 5 seconds..."
 sleep 5
