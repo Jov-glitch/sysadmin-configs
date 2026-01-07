@@ -10,11 +10,9 @@ Configuration files and documentation for my hybrid infrastructure (Linux & Wind
 
 ## How to Install (only fedora 42)
 
-### 1. Clone the repository
+### 1. Clone the installation file
 ```bash
-sudo dnf install git
-git clone https://github.com:Jov-glitch/sysadmin-configs.git
-cd sysadmin-configs
+wget https://raw.githubusercontent.com/Jov-glitch/sysadmin-configs/main/install.sh
 ```
 
 ### 2. Set Permissions
@@ -31,9 +29,7 @@ chmod +x install.sh
 ### Bonus: FastInstall
 
 ```bash
-sudo dnf install git
-git clone https://github.com:Jov-glitch/sysadmin-configs.git
-cd sysadmin-configs
+wget https://raw.githubusercontent.com/Jov-glitch/sysadmin-configs/main/install.sh
 chmod +x install.sh
 ./install.sh
 ```
