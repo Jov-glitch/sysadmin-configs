@@ -138,7 +138,7 @@ case $NGINX_CHOICE in
             --name nginx-main \
             -p 80:80 \
             --restart always \
-            nginx:alpine
+            nginx:latest
             
         success "Nginx (Docker) container started on port 80."
 
@@ -175,5 +175,5 @@ echo -e "${GREEN}==============================================${NC}"
 echo -e "${GREEN}   		     Finish       	       ${NC}"
 echo -e "${GREEN}==============================================${NC}"
 echo "Rebooting in 5 seconds..."
-#sleep 5
-#reboot
+sleep 5
+reboot
