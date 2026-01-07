@@ -116,12 +116,13 @@ case $NGINX_CHOICE in
         dnf install -y nginx
         systemctl enable --now nginx
         
-        # Copiar config si existe
-        if [ -f "$WORKSPACE/$REPO_NAME/nginx" ]; then
-             cp "$WORKSPACE/$REPO_NAME/nginx/*" /etc/nginx/conf.d/
-             log "Config copied to /etc/nginx/conf.d/"
-        fi
-        success "Nginx (Local) installed and running."
+        # 1. Copiar el contenido (fíjate en el /. al final del origen)
+	docker cp "$WORKSPACE/$REPO_NAME/nginx/." nginx-main:/etc/nginx/
+
+	# 2. IMPORTANTE: Recargar Nginx para que tome los cambios
+	docker exec nginx-main nginx -s reload
+
+	success "Nginx config applied and reloaded."
         ;;
         
     2)
@@ -174,5 +175,5 @@ echo -e "${GREEN}==============================================${NC}"
 echo -e "${GREEN}   		     Finish       	       ${NC}"
 echo -e "${GREEN}==============================================${NC}"
 echo "Rebooting in 5 seconds..."
-sleep 5
-reboot
+#sleep 5
+#reboot
