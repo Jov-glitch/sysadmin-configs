@@ -13,7 +13,7 @@ Configuration files and documentation for my hybrid infrastructure (Linux & Wind
 ### 1. Clone the repository
 ```bash
 sudo dnf install git
-git clone git@github.com:Jov-glitch/sysadmin-configs.git
+git clone https://github.com:Jov-glitch/sysadmin-configs.git
 cd sysadmin-configs
 ```
 
@@ -32,7 +32,7 @@ chmod +x install.sh
 
 ```bash
 sudo dnf install git
-git clone git@github.com:Jov-glitch/sysadmin-configs.git
+git clone https://github.com:Jov-glitch/sysadmin-configs.git
 cd sysadmin-configs
 chmod +x install.sh
 ./install.sh
