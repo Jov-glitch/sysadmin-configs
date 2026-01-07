@@ -98,17 +98,72 @@ else
     cd "$REPO_NAME" && sudo -u $REAL_USER git pull
 fi
 
+
+# NGINX SELECTION MENU
+# =====================
+echo -e "${BLUE}------------------------------------------------${NC}"
+echo -e "${BLUE}   NGINX DEPLOYMENT STRATEGY                    ${NC}"
+echo -e "${BLUE}------------------------------------------------${NC}"
+echo "How do you want to install Nginx?"
+echo "  1) Local System (Native package via dnf)"
+echo "  2) Docker Container (Isolated)"
+echo ""
+read -p "Select an option [1 or 2]: " NGINX_CHOICE
+
+case $NGINX_CHOICE in
+    1)
+        log "Installing Nginx on Local System..."
+        dnf install -y nginx
+        systemctl enable --now nginx
+        
+        # Copiar config si existe
+        if [ -f "$WORKSPACE/$REPO_NAME/nginx" ]; then
+             cp "$WORKSPACE/$REPO_NAME/nginx/*" /etc/nginx/conf.d/
+             log "Config copied to /etc/nginx/conf.d/"
+        fi
+        success "Nginx (Local) installed and running."
+        ;;
+        
+    2)
+        log "Deploying Nginx via Docker..."
+        
+        # Verificar que Docker esté instalado primero
+        if ! command -v docker &> /dev/null; then
+            error "Docker is not installed! Cannot deploy container."
+        fi
+
+        # Crear un contenedor simple de Nginx
+        docker run -d \
+            --name nginx-main \
+            -p 80:80 \
+            --restart always \
+            nginx:alpine
+            
+        success "Nginx (Docker) container started on port 80."
+
+	docker cp "$WORKSPACE/$REPO_NAME/nginx/*" nginx-main:/etc/nginx/
+	
+	success "Nginx config apply to container."
+
+        ;;
+
+        
+    *)
+        log "Invalid option selected. Skipping Nginx installation."
+        ;;
+esac
+
 # Apply config
 # ============
-log "Applying configurations from repo..."
+#log "Applying configurations from repo..."
 
-# Ejemplo: Copiar config de Nginx si existe en el repo
-if [ -f "$WORKSPACE/$REPO_NAME/nginx/reverse-proxy.conf" ]; then
-    # Nginx ya se instaló en el paso de Tools
-    cp "$WORKSPACE/$REPO_NAME/nginx/reverse-proxy.conf" /etc/nginx/conf.d/
-    systemctl enable nginx
-    success "Configuration of nginx applied"
-fi
+# If exist, do it
+#if [ -f "$WORKSPACE/$REPO_NAME/nginx" ]; then
+#    # Nginx ya se instaló en el paso de Tools
+#    cp "$WORKSPACE/$REPO_NAME/nginx/*" /etc/nginx/conf.d/
+#    systemctl enable nginx
+#    success "Configuration of nginx applied"
+#fi
 
 # Clean and restart
 # =================
