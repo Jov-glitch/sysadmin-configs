@@ -142,7 +142,7 @@ case $NGINX_CHOICE in
             
         success "Nginx (Docker) container started on port 80."
 
-	docker cp "$WORKSPACE/$REPO_NAME/nginx/*" nginx-main:/etc/nginx/
+	docker cp "$WORKSPACE/$REPO_NAME/nginx/." nginx-main:/etc/nginx/
 	
 	success "Nginx config apply to container."
 
