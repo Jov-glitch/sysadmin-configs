@@ -10,24 +10,19 @@ Configuration files and documentation for my hybrid infrastructure (Linux & Wind
 
 ## How to Install (only fedora 42)
 
-```bash
-cat << 'EOF' > README.md
-
 ### 1. Clone the repository
-\`\`\`bash
+```bash
 git clone git@github.com-jov:Jov-glitch/sysadmin-configs.git
 cd sysadmin-configs
-\`\`\`
+```
 
 ### 2. Set Permissions
-\`\`\`bash
+```bash
 chmod +x install.sh
-\`\`\`
+```
 
 ### 3. And install.
 
-\`\`\`bash
+```bash
 ./install.sh
-\`\`\`
-
-EOF
+```
